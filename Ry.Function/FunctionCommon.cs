@@ -5,6 +5,7 @@ using System.Management;
 using System.Media;
 using System.Reflection.Emit;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 using XMLFileOperate;
@@ -276,160 +277,125 @@ namespace Ry.Function
         [DllImport("user32.dll")]
         public static extern bool MessageBeep(uint uType);
 
+
         /// <summary>
-        /// 将dbtable 存到指定的文件
+        /// 从XML文件中读取一个DataTable
         /// </summary>
-        /// <param name="dt"></param>
-        /// <param name="file"></param>
+        /// <param name="dt">数据源</param>
+        /// <param name="address">XML文件地址</param>
         /// <returns></returns>
-        #region DataTableToXml
-       
-        public static string DataTableToXml(DataTable dt, string sName)
-        {
-            if (dt != null)
-            {
-                MemoryStream ms = null;
-                XmlTextWriter XmlWt = null;
-                try
-                {
-                    ms = new MemoryStream();
-                    //根据ms实例化XmlWt
-                    XmlWt = new XmlTextWriter(ms, System.Text.Encoding.Unicode);
-                    //获取ds中的数据
-                    dt.TableName = string.IsNullOrEmpty(sName) ? "dt2xml" : sName;
-                    dt.WriteXml(XmlWt, XmlWriteMode.WriteSchema);
-                    int count = (int)ms.Length;
-                    byte[] temp = new byte[count];
-                    ms.Seek(0, SeekOrigin.Begin);
-                    ms.Read(temp, 0, count);
-                    //返回Unicode编码的文本
-                    System.Text.UnicodeEncoding ucode = new System.Text.UnicodeEncoding();
-                    string returnValue = ucode.GetString(temp).Trim();
-                    return returnValue;
-                }
-                catch (System.Exception ex)
-                {
-                    throw ex;
-                }
-                finally
-                {
-                    //释放资源
-                    if (XmlWt != null)
-                    {
-                        XmlWt.Close();
-                        ms.Close();
-                        ms.Dispose();
-                    }
-                }
-            }
-            else
-            {
-                return "";
-            }
-        }
-
-        public static DataSet XmlToDataSet(string xmlString)
-        {
-            XmlDocument xmldoc = new XmlDocument();
-            xmldoc.LoadXml(xmlString);
-            StringReader stream = null;
-            XmlTextReader reader = null;
-            try
-            {
-                DataSet xmlDS = new DataSet();
-                stream = new StringReader(xmldoc.InnerXml);
-                reader = new XmlTextReader(stream);
-                xmlDS.ReadXml(reader);
-                reader.Close();
-                return xmlDS;
-            }
-            catch (System.Exception ex)
-            {
-                reader.Close();
-                throw ex;
-            }
-        }
-        #endregion
-        public static DataSet FileToDataSet(string file)
-        {
-            DataSet ds = new DataSet();
-            ds.ReadXml(file);
-            return ds;
-        }
-
-        public static DataTable FileToDataTable(string file)
+        public static DataTable XmlFile2Datatable(string address)
         {
             DataTable dt = new DataTable();
-            dt.ReadXml(file);
+            try
+            {
+                if (!File.Exists(address))
+                {
+                    throw new Exception("文件不存在!");
+                }
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load(address);
+                XmlNode root = xmlDoc.SelectSingleNode("DataTable");
+                //读取表名
+                dt.TableName = ((XmlElement)root).GetAttribute("TableName");
+                //Console.WriteLine("读取表名： {0}", dt.TableName);
+                //读取行数
+                int CountOfRows = 0;
+                if (!int.TryParse(((XmlElement)root).
+                    GetAttribute("CountOfRows").ToString(), out CountOfRows))
+                {
+                    throw new Exception("行数转换失败");
+                }
+                //读取列数
+                int CountOfColumns = 0;
+                if (!int.TryParse(((XmlElement)root).
+                    GetAttribute("CountOfColumns").ToString(), out CountOfColumns))
+                {
+                    throw new Exception("列数转换失败");
+                }
+                //从第一行中读取记录的列名
+                foreach (XmlAttribute xa in root.ChildNodes[0].Attributes)
+                {
+                    dt.Columns.Add(xa.Value);
+                    //Console.WriteLine("建立列： {0}", xa.Value);
+                }
+                //从后面的行中读取行信息
+                for (int i = 1; i < root.ChildNodes.Count; i++)
+                {
+                    string[] array = new string[root.ChildNodes[0].Attributes.Count];
+                    for (int j = 0; j < array.Length; j++)
+                    {
+                        array[j] = root.ChildNodes[i].Attributes[j].Value.ToString();
+                    }
+                    dt.Rows.Add(array);
+                    //Console.WriteLine("行插入成功");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return new DataTable();
+            }
             return dt;
         }
 
-        public static void DataSetTofile(DataSet ds, string file)
-        {
-            ds.WriteXml(file);
-        }
-
-        public static void DataTableToFile(DataTable dt,string file)
-        {
-            dt.WriteXml(file);
-        }
 
         /// <summary>
-        /// 将datatable转为xml
+        /// 将DataTable的内容写入到XML文件中
         /// </summary>
-        /// <param name="vTable">要生成XML的DataTable</param>
-        /// <returns></returns>
-        public static string DataTable2Xml(DataTable vTable)
+        /// <param name="dt">数据源</param>
+        /// <param name="address">XML文件地址</param>
+        public static bool DataTable2XmlFile(DataTable dt, string address)
         {
-            if (null == vTable) return string.Empty;
-            StringWriter writer = new StringWriter();
-            vTable.WriteXml(writer);
-            string xmlstr = writer.ToString();
-            writer.Close();
-            return xmlstr;
-        }
-
-        /// <summary>
-        /// 将XML生成DataTable
-        /// </summary>
-        /// <param name="xmlStr">XML字符串</param>
-        /// <returns></returns>
-        public static DataTable Xml2DataTable(string xmlStr)
-        {
-            if (!string.IsNullOrEmpty(xmlStr))
+            try
             {
-                StringReader StrStream = null;
-                XmlTextReader Xmlrdr = null;
-                try
+                //如果文件DataTable.xml存在则直接删除
+                if (File.Exists(address))
                 {
-                    DataSet ds = new DataSet();
-                    //读取字符串中的信息
-                    StrStream = new StringReader(xmlStr);
-                    //获取StrStream中的数据
-                    Xmlrdr = new XmlTextReader(StrStream);
-                    //ds获取Xmlrdr中的数据               
-                    ds.ReadXml(Xmlrdr);
-                    return ds.Tables[0];
+                    File.Delete(address);
                 }
-                catch (Exception e)
+                XmlTextWriter writer =
+                    new XmlTextWriter(address, Encoding.GetEncoding("GBK"));
+                writer.Formatting = Formatting.Indented;
+                //XML文档创建开始
+                writer.WriteStartDocument();
+                writer.WriteComment("DataTable: " + dt.TableName);
+                writer.WriteStartElement("DataTable"); //DataTable开始
+                writer.WriteAttributeString("TableName", dt.TableName);
+                writer.WriteAttributeString("CountOfRows", dt.Rows.Count.ToString());
+                writer.WriteAttributeString("CountOfColumns", dt.Columns.Count.ToString());
+                writer.WriteStartElement("ClomunName", ""); //ColumnName开始
+                for (int i = 0; i < dt.Columns.Count; i++)
                 {
-                    return null;
+                    writer.WriteAttributeString(
+                        "Column" + i.ToString(), dt.Columns[i].ColumnName);
                 }
-                finally
+                writer.WriteEndElement(); //ColumnName结束
+                //按行各行
+                for (int j = 0; j < dt.Rows.Count; j++)
                 {
-                    //释放资源
-                    if (Xmlrdr != null)
+                    writer.WriteStartElement("Row" + j.ToString(), "");
+                    //打印各列
+                    for (int k = 0; k < dt.Columns.Count; k++)
                     {
-                        Xmlrdr.Close();
-                        StrStream.Close();
-                        StrStream.Dispose();
+                        writer.WriteAttributeString(
+                            "Column" + k.ToString(), dt.Rows[j][k].ToString());
                     }
+                    writer.WriteEndElement();
                 }
+                writer.WriteEndElement(); //DataTable结束
+                writer.WriteEndDocument();
+                writer.Close();
+                //XML文档创建结束
             }
-            return null;
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+            return true;
         }
-
-
 
     }
+
 }

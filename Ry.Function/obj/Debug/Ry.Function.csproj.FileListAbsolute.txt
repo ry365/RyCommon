@@ -1,0 +1,12 @@
+E:\Source\2019\Debug\NUnit3.TestAdapter.dll
+E:\Source\2019\Debug\NUnit3.TestAdapter.pdb
+E:\Source\2019\Debug\nunit.engine.dll
+E:\Source\2019\Debug\nunit.engine.api.dll
+E:\Source\2019\Debug\Dawn.Function.V6.1.dll
+E:\Source\2019\Debug\Dawn.Function.V6.1.pdb
+E:\Source\2019\RyCommon\Ry.Function\obj\Debug\Ry.Function.csprojResolveAssemblyReference.cache
+E:\Source\2019\RyCommon\Ry.Function\obj\Debug\Ry.Appbase.frmError.resources
+E:\Source\2019\RyCommon\Ry.Function\obj\Debug\Dawn.Function.Properties.Resources.resources
+E:\Source\2019\RyCommon\Ry.Function\obj\Debug\Ry.Function.csproj.GenerateResource.Cache
+E:\Source\2019\RyCommon\Ry.Function\obj\Debug\Dawn.Function.V6.1.dll
+E:\Source\2019\RyCommon\Ry.Function\obj\Debug\Dawn.Function.V6.1.pdb
