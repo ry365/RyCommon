@@ -164,10 +164,6 @@ namespace Ry.Function
             {
                 diskName = diskName.Substring(diskName.Length - 16, 16);
             }
-
-            //}
-
-
             return diskName;
         }
 

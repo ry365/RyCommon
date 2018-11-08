@@ -53,7 +53,7 @@ namespace test
         {
             ConnectOracle();
             DataTable dt = new DataTable();
-            dt = Ry.Function.FunctionCommon.ReadFromXml("C:\\aa.xml");
+         
             MessageBox.Show(dt.Rows[0][1].ToString());
 
         }
