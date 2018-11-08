@@ -2,7 +2,7 @@ E:\Source\2019\Debug\NUnit3.TestAdapter.dll
 E:\Source\2019\Debug\NUnit3.TestAdapter.pdb
 E:\Source\2019\Debug\nunit.engine.dll
 E:\Source\2019\Debug\nunit.engine.api.dll
-E:\Source\2019\Debug\Dawn.Defined.V6.1.dll
-E:\Source\2019\Debug\Dawn.Defined.V6.1.pdb
-E:\Source\2019\RyCommon\Ry.Defined\obj\Debug\Dawn.Defined.V6.1.dll
-E:\Source\2019\RyCommon\Ry.Defined\obj\Debug\Dawn.Defined.V6.1.pdb
+E:\Source\2019\Debug\RY.Defined.V6.1.dll
+E:\Source\2019\Debug\RY.Defined.V6.1.pdb
+E:\Source\2019\RyCommon\Ry.Defined\obj\Debug\RY.Defined.V6.1.dll
+E:\Source\2019\RyCommon\Ry.Defined\obj\Debug\RY.Defined.V6.1.pdb
