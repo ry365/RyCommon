@@ -1,0 +1,15 @@
+E:\Source\2019\RyCommon\Ry.ReadChinese\bin\Debug\NUnit3.TestAdapter.dll
+E:\Source\2019\RyCommon\Ry.ReadChinese\bin\Debug\NUnit3.TestAdapter.pdb
+E:\Source\2019\RyCommon\Ry.ReadChinese\bin\Debug\nunit.engine.dll
+E:\Source\2019\RyCommon\Ry.ReadChinese\bin\Debug\nunit.engine.api.dll
+E:\Source\2019\RyCommon\Ry.ReadChinese\bin\Debug\Ry.ReadChinese.dll
+E:\Source\2019\RyCommon\Ry.ReadChinese\bin\Debug\Ry.ReadChinese.pdb
+E:\Source\2019\RyCommon\Ry.ReadChinese\bin\Debug\RY.Defined.V6.1.dll
+E:\Source\2019\RyCommon\Ry.ReadChinese\bin\Debug\RY.Function.V6.1.dll
+E:\Source\2019\RyCommon\Ry.ReadChinese\bin\Debug\RY.Defined.V6.1.pdb
+E:\Source\2019\RyCommon\Ry.ReadChinese\bin\Debug\RY.Function.V6.1.pdb
+E:\Source\2019\RyCommon\Ry.ReadChinese\obj\Debug\Ry.ReadChinese.csprojResolveAssemblyReference.cache
+E:\Source\2019\RyCommon\Ry.ReadChinese\obj\Debug\Ry.ReadChinese.csproj.GenerateResource.Cache
+E:\Source\2019\RyCommon\Ry.ReadChinese\obj\Debug\Ry.ReadChinese.dll
+E:\Source\2019\RyCommon\Ry.ReadChinese\obj\Debug\Ry.ReadChinese.pdb
+E:\Source\2019\RyCommon\Ry.ReadChinese\obj\Debug\Ry.ReadChinese.SpeakVoice.resources

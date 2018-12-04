@@ -6,3 +6,4 @@ E:\Source\2019\Debug\RY.Defined.V6.1.dll
 E:\Source\2019\Debug\RY.Defined.V6.1.pdb
 E:\Source\2019\RyCommon\Ry.Defined\obj\Debug\RY.Defined.V6.1.dll
 E:\Source\2019\RyCommon\Ry.Defined\obj\Debug\RY.Defined.V6.1.pdb
+E:\Source\2019\RyCommon\Ry.Defined\obj\Debug\Ry.Defined.csprojResolveAssemblyReference.cache

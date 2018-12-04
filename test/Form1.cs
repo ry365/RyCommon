@@ -7,55 +7,51 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Oracle.ManagedDataAccess.Client;
+using Ry.ReadChinese;
+using SpeechLib;
 
 namespace test
 {
     public partial class Form1 : Form
     {
-        public OracleConnection ORAconn;
-        public OracleCommand ORAcmd;
-        public OracleDataAdapter ORAadp;
-
+        private SpeakVoice sv;
 
         public Form1()
         {
+            sv =  new SpeakVoice();
+            
+            sv.BeginSpeak +=new EventHandler(BeginSpeak);
+            sv.EndSpeak = this.EndSpeak;
             InitializeComponent();
         }
 
-
-
-        public string ConnectOracle()
-        {
-            try
-            {
-                if (ORAconn == null)
-                    if (ORAconn == null)
-                    {
-                        string connString =
-                            "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=172.16.115.155)" +
-                            "(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=ORACLE)));" +
-                            "Persist Security Info=True;User ID=us;Password=US;";
-                        ORAconn = new OracleConnection(connString);
-                        ORAcmd = new OracleCommand("", ORAconn);
-                        ORAadp = new OracleDataAdapter(ORAcmd);
-                        ORAconn.Open();
-                    }
-
-                return string.Empty;
-            }
-            catch (Exception ex)
-            {
-                return ex.ToString();
-            }
-        }
         private void button1_Click(object sender, EventArgs e)
         {
-            ConnectOracle();
-            DataTable dt = new DataTable();
-         
-            MessageBox.Show(dt.Rows[0][1].ToString());
+            sv.AppendSpeak(textBox1.Text);
+            sv.speakVoice();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            sv.Show();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
 
         }
+
+
+        private void BeginSpeak(object sender, EventArgs e)
+        {
+            listBox1.Items.Add("Begin+"+sender.ToString());
+        }
+
+        private void EndSpeak(object sender, EventArgs e)
+        {
+            listBox1.Items.Add("End+" + sender.ToString());
+        }
+
     }
+
 }

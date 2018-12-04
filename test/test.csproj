@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{395789F9-66CB-4780-B5E2-4BCB98CA03D8}</ProjectGuid>
+    <ProjectGuid>{AA93DD2A-482D-4FA5-A7A0-5135669DEEB3}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>test</RootNamespace>
@@ -33,9 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Oracle.ManagedDataAccess, Version=4.122.18.3, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
-      <HintPath>..\packages\Oracle.ManagedDataAccess.18.3.0\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Interop.SpeechLib">
+      <HintPath>..\Ry.ReadChinese\Interop.SpeechLib.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -70,7 +70,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -85,13 +84,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Ry.Defined\Ry.Defined.csproj">
-      <Project>{f08f5159-a451-4b44-b36b-7f3a693235a1}</Project>
-      <Name>Ry.Defined</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Ry.Function\Ry.Function.csproj">
-      <Project>{a6c36a3c-5a84-4a7d-93bd-186a5171279c}</Project>
-      <Name>Ry.Function</Name>
+    <ProjectReference Include="..\Ry.ReadChinese\Ry.ReadChinese.csproj">
+      <Project>{72968a9a-de56-44a3-916f-de5151197514}</Project>
+      <Name>Ry.ReadChinese</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
