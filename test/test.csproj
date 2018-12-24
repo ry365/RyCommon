@@ -56,10 +56,19 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="HotKey.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HotKey.Designer.cs">
+      <DependentUpon>HotKey.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HotKey.resx">
+      <DependentUpon>HotKey.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -84,6 +93,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GlobalHotKey\Ry.GlobalHotKey.csproj">
+      <Project>{bfb952de-6d0d-4ece-986f-d22a3758caa1}</Project>
+      <Name>Ry.GlobalHotKey</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ry.ReadChinese\Ry.ReadChinese.csproj">
       <Project>{72968a9a-de56-44a3-916f-de5151197514}</Project>
       <Name>Ry.ReadChinese</Name>

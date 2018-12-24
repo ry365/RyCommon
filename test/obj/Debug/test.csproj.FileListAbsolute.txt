@@ -13,6 +13,9 @@ E:\Source\2019\RyCommon\test\obj\Debug\test.Properties.Resources.resources
 E:\Source\2019\RyCommon\test\obj\Debug\test.csproj.GenerateResource.Cache
 E:\Source\2019\RyCommon\test\obj\Debug\test.exe
 E:\Source\2019\RyCommon\test\obj\Debug\test.pdb
+E:\Source\2019\RyCommon\test\obj\Debug\test.HotKey.resources
+E:\Source\2019\RyCommon\test\bin\Debug\GlobalHotKey.dll
+E:\Source\2019\RyCommon\test\bin\Debug\GlobalHotKey.pdb
 E:\Source\2019\RyCommon\test\bin\Debug\NUnit3.TestAdapter.dll
 E:\Source\2019\RyCommon\test\bin\Debug\NUnit3.TestAdapter.pdb
 E:\Source\2019\RyCommon\test\bin\Debug\nunit.engine.dll

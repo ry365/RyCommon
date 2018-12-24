@@ -14,6 +14,8 @@ namespace test
 {
     public partial class Form1 : Form
     {
+
+
         private SpeakVoice sv;
 
         public Form1()

@@ -19,6 +19,14 @@
         SaveOrderBy = 8
     }
 
+    public enum HotkeyModifiers
+    {
+        Alt = 1,
+        Control = 2,
+        Shift = 4,
+        Win = 8
+    }
+
 
     /// <summary>
     /// 系统设置级别 
