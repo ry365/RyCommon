@@ -63,6 +63,7 @@ namespace Ry.GlobalHotKey
         public void Regist(int modifiers, Keys vk, HotKeyCallBackHanlder callBack)
         {
             int id = keyid++;
+
             if (!RegisterHotKey(this.Handle, id, modifiers, vk))
                 throw new Exception("注册失败！");
             hwndCallbackPair par = new hwndCallbackPair();

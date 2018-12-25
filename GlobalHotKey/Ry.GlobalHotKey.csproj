@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GlobalHotKey.cs">
+    <Compile Include="HotKey.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="HotKeyFormBase.cs">
